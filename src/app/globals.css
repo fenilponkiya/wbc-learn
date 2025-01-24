@@ -1,21 +1,48 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Newsreader&family=Poppins:wght@300;400;500;600;700;800;900&display=swap&loading=async");
+@import url("https://fonts.googleapis.com/css2?family=Baskervville+SC&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"); */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --primary-dark: #2c1b73;
+  --primary-light: #dc007c;
+  --tertiary: rgba(44, 27, 115, 1);
+  --brand-white: #ffffff;
+  --lighter-dark-blue: #584f80;
+  --brand-dark: #4b5563;
+  --brand-slat: #e2e8f0;
+  --text-black: #000000;
+  --brand-orange: #fba02f;
+  --brand-dark-orange: #f76408;
+  --brand-deep-violet: #602e72;
+  --brand-teal: #2addc6;
+  --brand-dark-teal: #06bf99;
+  --brand-purple: #af32dd;
+  --brand-dark-purple: #7809bf;
+  --brand-violet: #4c1d95;
+  --brand-red: #dc2626;
+  --brand-light-pink: #eeeeee;
 }
 
 body {
-  color: var(--foreground);
+  /* color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif; */
+
+  font-family: var(--font-poppins), sans-serif;
+  font-optical-sizing: auto;
+  /* font-weight: ; */
+  font-style: normal;
+}
+h1,
+h2,
+h3 {
+  font-family: var(--font-montserrat), sans-serif;
+}
+
+code,
+pre {
+  font-family: var(--font-montserrat), monospace;
 }

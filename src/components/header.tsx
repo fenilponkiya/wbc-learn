@@ -1,3 +1,4 @@
+import { CustomButton } from "@/modules/core/components/CustomButton";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -40,14 +41,12 @@ const Header = () => {
           News
         </Link>
 
-        <a
-          //   href={`${isLogin ? `/${userRole}/my-dashboard` : "/login"}`}
+        <CustomButton
+          type="button"
+          text="CLUBHOUSE"
+          onClick={() => window.open("/login", "_blank")}
           className="button text-base font-bold bg-primary-light text-brand-white px-4 py-2 rounded-md"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          CLUBHOUSE
-        </a>
+        />
       </div>
     </div>
   );

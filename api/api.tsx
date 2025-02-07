@@ -13,9 +13,9 @@ const getHeaders = () => {
   return headers;
 };
 
-interface FindApiTypes {
-  payload: Record<string, unknown> | string | undefined;
-}
+// export interface FindApiTypes {
+//   payload: Record<string, unknown>;
+// }
 
 const apiErrorAlert = (status: Number, message: string) => {
   switch (status) {
@@ -60,7 +60,7 @@ const apiErrorAlert = (status: Number, message: string) => {
       break;
   }
 };
-export const createApi = async (routeName: string, payload: FindApiTypes) => {
+export const createApi = async (routeName: string, payload: any) => {
   return api
     .post(routeName, payload, getHeaders())
     .then((res) => {
@@ -80,7 +80,7 @@ export const createApi = async (routeName: string, payload: FindApiTypes) => {
     });
 };
 
-export const findApi = async (routeName: string, payload: FindApiTypes) => {
+export const findApi = async (routeName: string, payload: any) => {
   return api
     .get(routeName, getHeaders())
     .then((res) => {
@@ -116,7 +116,7 @@ export const deleteApi = async (routeName: string) => {
     });
 };
 
-export const putApi = async (routeName: string, payload: FindApiTypes) => {
+export const putApi = async (routeName: string, payload: any) => {
   return api
     .put(routeName, payload, getHeaders())
     .then((res) => {

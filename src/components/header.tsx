@@ -1,3 +1,4 @@
+"use client";
 import { CustomButton } from "@/modules/core/components/CustomButton";
 import Image from "next/image";
 import Link from "next/link";

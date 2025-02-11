@@ -10,7 +10,7 @@ export const CustomButton: FC<ButtonProps> = ({
   return (
     <button
       type={type}
-      className={`bg-primary-light text-brand-white rounded-md p-2 w-full ${className}`}
+      className={`${className}  rounded-md p-2 w-full`}
       onClick={onClick}
     >
       {text}

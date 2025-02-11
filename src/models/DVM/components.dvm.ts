@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { Control } from "react-hook-form";
 
 export type FormInputFieldProps = {
@@ -32,3 +33,8 @@ export type FormInputFieldProps = {
   ) => void;
   trigger?: (name: string) => void;
 };
+export interface DialogBlockProps {
+  children: ReactNode;
+  showModal: boolean;
+  setShowModal: (showModal: boolean) => void;
+}

@@ -1,10 +1,7 @@
-"use client";
-import Head from "next/head";
-import Link from "next/link";
-import Image from "next/image";
 import Header from "@/components/header";
-import { BiArrowBack } from "react-icons/bi";
-import { BsArrowBarRight } from "react-icons/bs";
+import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
 import { IoIosArrowRoundForward } from "react-icons/io";
 
 export default function Home() {

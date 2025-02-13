@@ -1,4 +1,3 @@
-"use client";
 import { CustomButton } from "@/modules/core/components/CustomButton";
 import FormInputField from "@/modules/core/formComponents/InputForm/inputHookField";
 import { FC } from "react";

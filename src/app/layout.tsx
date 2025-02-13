@@ -1,11 +1,11 @@
 "use client";
 
-import type { Metadata } from "next";
-import { Montserrat, Poppins } from "next/font/google";
-import "./globals.css";
-import { Bounce, ToastContainer } from "react-toastify";
-import { Provider } from "react-redux";
 import { store } from "@/redux/store/store";
+import { Montserrat, Poppins } from "next/font/google";
+import { Provider } from "react-redux";
+import { Bounce, ToastContainer } from "react-toastify";
+import { useEffect, useState } from "react";
+import "./globals.css";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -25,29 +25,14 @@ const montserrat = Montserrat({
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <>
-      <html lang="en">
-        <Provider store={store}>
-          <body
-            className={`${poppins.variable} ${montserrat.variable} antialiased`}
-          >
-            <ToastContainer
-              position="top-right"
-              autoClose={3000}
-              hideProgressBar={false}
-              newestOnTop={true}
-              pauseOnFocusLoss
-              transition={Bounce}
-            />
-
-            {children}
-          </body>
-        </Provider>
-      </html>
-    </>
+    <html lang="en">
+      <body
+        className={`${poppins.variable} ${montserrat.variable} antialiased`}
+      >
+        {children}
+      </body>
+    </html>
   );
 }

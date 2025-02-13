@@ -1,9 +1,6 @@
 import Loading from "@/components/ui-components/loading";
-import { isLoading, isStopLoading } from "@/redux/slices/loadingStore";
-import { RootState } from "@/redux/store/store";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { createApi } from "../../../../api/api";
 import ForgotPasswordView from "../components/forgotPasswordView";
@@ -16,11 +13,10 @@ const ForgotPasswordController: FC<ForgotPasswordControllerProps> = ({
   setshowForgotPasswordModal,
 }) => {
   const { handleSubmit, control } = useForm<ForgotPasswordFormType>();
-  const loading = useSelector((state: RootState) => state.loading.loading);
-  const dispatch = useDispatch();
+  const [loading, setLoading] = useState<boolean>(false);
   const submit = async (data: ForgotPasswordFormType) => {
+    setLoading(true);
     try {
-      dispatch(isLoading());
       const response = await createApi("/auth/forgotpassword", data);
       console.log("API Response:", response);
 
@@ -31,7 +27,7 @@ const ForgotPasswordController: FC<ForgotPasswordControllerProps> = ({
     } catch (error) {
       console.error("Login Error:", error);
     } finally {
-      dispatch(isStopLoading());
+      setLoading(false);
     }
   };
   return loading === true ? (

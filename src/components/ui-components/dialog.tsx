@@ -1,3 +1,4 @@
+"use client";
 import { DialogBlockProps } from "@/models/DVM/components.dvm";
 import React, { FC, ReactNode } from "react";
 

@@ -1,13 +1,13 @@
 "use client";
-
+import DialogBlock from "@/components/ui-components/dialog";
 import { CustomButton } from "@/modules/core/components/CustomButton";
 import FormInputField from "@/modules/core/formComponents/InputForm/inputHookField";
+import Image from "next/image";
+import { redirect } from "next/navigation";
 import { FC, useState } from "react";
+import ForgotPasswordController from "../controllers/forgotPasswordController";
 import { errorMessage } from "../model/constants";
 import { LoginViewProps } from "../model/DVM";
-import DialogBlock from "@/components/ui-components/dialog";
-import ForgotPasswordController from "../controllers/forgotPasswordController";
-import Image from "next/image";
 
 const LoginView: FC<LoginViewProps> = ({ control, handleSubmit, onSubmit }) => {
   const [showForgotPasswordModal, setshowForgotPasswordModal] =
@@ -56,12 +56,16 @@ const LoginView: FC<LoginViewProps> = ({ control, handleSubmit, onSubmit }) => {
             type="submit"
             text="Login"
             className="bg-primary-light text-brand-white"
-            onClick={() => {}}
           />
         </form>
         <span className="text-sm ">
           Don't have an account?{" "}
-          <span className="text-primary-light">Register</span>
+          <span
+            className="text-primary-light cursor-pointer"
+            onClick={() => redirect("/register")}
+          >
+            Register
+          </span>
         </span>
       </div>
       <DialogBlock

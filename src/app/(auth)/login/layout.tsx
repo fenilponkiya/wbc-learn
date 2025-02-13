@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat, Poppins } from "next/font/google";
-import Image from "next/image";
-import "../globals.css";
+import "../../globals.css";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -23,7 +22,7 @@ export const metadata: Metadata = {
   title: "Women's Business Club",
   description: "Login",
 };
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -37,7 +36,7 @@ export default function RootLayout({
           className="basic-3/5 bg-[url('/auth/awards-hero.png')] bg-cover bg-repeat-none
  bg-lighter-dark-blue bg-blend-soft-light hidden md:block"
         >
-          <div className="flex ">
+          <div className="flex">
             <div className="w-3/5 mt-auto ml-12 mb-20">
               <span className="block text-brand-white font-medium text-3xl ">
                 Welcome to
@@ -55,14 +54,6 @@ export default function RootLayout({
           </div>
         </div>
         <div className="h-screen bg-brand-white  flex flex-col justify-center md:hidden">
-          <Image
-            src={"../home/header-logo.svg"}
-            alt="header-logo"
-            width={"150"}
-            height={"150"}
-            className="mx-auto"
-          />
-
           {children}
         </div>
       </body>

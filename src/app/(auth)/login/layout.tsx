@@ -48,7 +48,7 @@ export default async function RootLayout({
                 Empowering ambitious women to succeed
               </span>
             </div>
-            <div className="h-screen bg-brand-white w-2/5 flex flex-col justify-center">
+            <div className="h-screen bg-brand-white w-2/5 flex flex-col justify-center overflow-auto">
               {children}
             </div>
           </div>

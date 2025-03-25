@@ -1,5 +1,10 @@
 import { BaseSyntheticEvent } from "react";
-import { Control, UseFormHandleSubmit } from "react-hook-form";
+import {
+  Control,
+  UseFormHandleSubmit,
+  UseFormSetValue,
+  UseFormTrigger,
+} from "react-hook-form";
 
 export interface LoginPayloadType {
   email: string;
@@ -22,13 +27,25 @@ export interface ForgotPasswordViewProps {
     e?: BaseSyntheticEvent<object, any, any> | undefined
   ) => Promise<void>;
   setshowForgotPasswordModal: (showForgotPasswordModal: boolean) => void;
+  reset: any;
 }
 export interface RegisterPayloadType {
   email: string;
   password: string;
+  country: string;
+  state: string;
+  city: string;
+  firstName: string;
+  lastName: string;
+  gender: string;
+  contactNo: string;
+  birthDate: string;
+  userName: string;
 }
 export interface RegisterViewProps {
   control: Control<RegisterPayloadType>;
   handleSubmit: UseFormHandleSubmit<RegisterPayloadType, undefined>;
   onSubmit: (payload: RegisterPayloadType) => void;
+  setValue: UseFormSetValue<RegisterPayloadType>;
+  trigger: UseFormTrigger<RegisterPayloadType>;
 }

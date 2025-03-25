@@ -31,7 +31,19 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} ${montserrat.variable} antialiased`}
       >
-        {children}
+        <Provider store={store}>
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick={false}
+            pauseOnHover
+            theme="light"
+            transition={Bounce}
+          />
+          {children}
+        </Provider>
       </body>
     </html>
   );

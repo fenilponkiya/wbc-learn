@@ -80,7 +80,7 @@ export const createApi = async (routeName: string, payload: any) => {
     });
 };
 
-export const findApi = async (routeName: string, payload: any) => {
+export const findApi = async (routeName: string) => {
   return api
     .get(routeName, getHeaders())
     .then((res) => {

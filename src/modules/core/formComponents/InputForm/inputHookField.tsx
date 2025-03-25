@@ -3,6 +3,7 @@ import { Controller } from "react-hook-form";
 import { FormInputFieldProps } from "@/models/DVM/components.dvm";
 import { REGX_CONST } from "@/models/constants/core";
 import InputField from "../../components/Fields/input";
+import { RegisterPayloadType } from "@/modules/auth/model/DVM";
 
 const FormInputField: FC<FormInputFieldProps> = ({
   name,
@@ -30,7 +31,7 @@ const FormInputField: FC<FormInputFieldProps> = ({
   useEffect(() => {
     if (readonly && formValue) {
       setValue?.(name, formValue);
-      trigger?.(name);
+      trigger?.(name as keyof RegisterPayloadType);
     }
   }, [readonly, formValue, setValue, name]);
 
@@ -59,11 +60,10 @@ const FormInputField: FC<FormInputFieldProps> = ({
   } else {
     pattern = undefined;
   }
-
   return (
     <div>
       <div className="flex">
-        <label className={labelStyle}>{label}</label>
+        <label className={`${labelStyle} text-gray-500`}>{label}</label>
         {isStarRequired && <span className="text-brand-red">*</span>}
       </div>
       <Controller
@@ -74,23 +74,26 @@ const FormInputField: FC<FormInputFieldProps> = ({
           required: required && errorMessage ? errorMessage : required,
           pattern: pattern,
         }}
-        render={({ field: { onChange, value }, fieldState: { error } }) => (
-          <InputField
-            onClick={onClick}
-            name={name}
-            label={label}
-            value={value ?? formValue ?? ""}
-            onChange={onChange || onHandleChange}
-            type={type}
-            className={className}
-            readonly={readonly}
-            placeholder={placeholder}
-            errors={error}
-            required={required}
-            onKeyDown={onKeyDown}
-            max={max}
-          />
-        )}
+        render={({ field: { onChange, value }, fieldState: { error } }) => {
+          console.log(value, name);
+          return (
+            <InputField
+              onClick={onClick}
+              name={name}
+              label={label}
+              value={value}
+              onChange={onChange || onHandleChange}
+              type={type}
+              className={className}
+              readonly={readonly}
+              placeholder={placeholder}
+              errors={error}
+              required={required}
+              onKeyDown={onKeyDown}
+              max={max}
+            />
+          );
+        }}
       />
     </div>
   );

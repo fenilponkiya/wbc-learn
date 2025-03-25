@@ -50,7 +50,7 @@ const InputField: FC<InputFieldTypes> = ({
           id={name}
           max={type === "date" ? max : undefined}
           className={`border ${
-            errors && errors.type ? "border-red-500" : "border-brand-light-pink"
+            errors && errors.type ? "border-red-500" : "border-gray-500"
           } focus:outline-none rounded-md p-2 w-full text-normal placeholder:text-brand-gray-500 ${className}`}
           onChange={onChange}
           onKeyDown={onKeyDown}

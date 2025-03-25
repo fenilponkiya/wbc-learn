@@ -70,7 +70,7 @@ const LoginView: FC<LoginViewProps> = ({ control, handleSubmit, onSubmit }) => {
       </div>
       <DialogBlock
         showModal={showForgotPasswordModal}
-        setShowModal={setshowForgotPasswordModal}
+        closeModal={() => setshowForgotPasswordModal(false)}
       >
         <ForgotPasswordController
           setshowForgotPasswordModal={setshowForgotPasswordModal}

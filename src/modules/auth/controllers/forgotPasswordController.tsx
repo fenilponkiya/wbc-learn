@@ -12,7 +12,8 @@ import {
 const ForgotPasswordController: FC<ForgotPasswordControllerProps> = ({
   setshowForgotPasswordModal,
 }) => {
-  const { handleSubmit, control } = useForm<ForgotPasswordFormType>();
+  const { handleSubmit, control, setValue, reset } =
+    useForm<ForgotPasswordFormType>();
   const [loading, setLoading] = useState<boolean>(false);
   const submit = async (data: ForgotPasswordFormType) => {
     setLoading(true);
@@ -21,6 +22,8 @@ const ForgotPasswordController: FC<ForgotPasswordControllerProps> = ({
       console.log("API Response:", response);
 
       if (response?.status === 200) {
+        setValue("email", "");
+        reset();
         setshowForgotPasswordModal(false);
         toast("Mail sent successfully");
       }
@@ -37,6 +40,7 @@ const ForgotPasswordController: FC<ForgotPasswordControllerProps> = ({
       onSubmit={handleSubmit(submit)}
       control={control}
       setshowForgotPasswordModal={setshowForgotPasswordModal}
+      reset={reset}
     />
   );
 };

@@ -8,6 +8,7 @@ const ForgotPasswordView: FC<ForgotPasswordViewProps> = ({
   onSubmit,
   control,
   setshowForgotPasswordModal,
+  reset,
 }) => {
   return (
     <>
@@ -33,13 +34,16 @@ const ForgotPasswordView: FC<ForgotPasswordViewProps> = ({
             text="Proceed"
             type="submit"
             className="text-sm bg-primary-light text-brand-white"
-            onClick={() => setshowForgotPasswordModal(false)}
+            // onClick={() => setshowForgotPasswordModal(false)}
           />
           <CustomButton
             className="text-sm"
             text="Back"
             type="button"
-            onClick={() => setshowForgotPasswordModal(false)}
+            onClick={() => {
+              setshowForgotPasswordModal(false);
+              reset();
+            }}
           />
         </div>
       </form>

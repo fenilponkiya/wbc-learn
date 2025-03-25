@@ -8,13 +8,15 @@ import { toast } from "react-toastify";
 import { RegisterPayloadType } from "../model/DVM";
 
 const RegisterController = () => {
-  const { handleSubmit, control } = useForm<RegisterPayloadType>();
-
+  const { handleSubmit, control, setValue, getValues, trigger } =
+    useForm<RegisterPayloadType>();
+  console.log(getValues("country"));
   const [loading, setLoading] = useState<boolean>(false);
   const onSubmit = async (data: RegisterPayloadType) => {
+    const payloadData = { ...data, role: "user" };
     setLoading(true);
     try {
-      const response = await createApi("/auth/register", data);
+      const response = await createApi("/auth/register", payloadData);
 
       if (response.status === 201) {
         toast("User Created Successfully");
@@ -30,6 +32,8 @@ const RegisterController = () => {
       control={control}
       onSubmit={onSubmit}
       handleSubmit={handleSubmit}
+      setValue={setValue}
+      trigger={trigger}
     />
   );
 };

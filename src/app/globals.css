@@ -1,5 +1,5 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Newsreader&family=Poppins:wght@300;400;500;600;700;800;900&display=swap&loading=async");
-@import url("https://fonts.googleapis.com/css2?family=Baskervville+SC&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Newsreader&family=Poppins:wght@300;400;500;600;700;800;900&display=swap&loading=async");
+/* @import url("https://fonts.googleapis.com/css2?family=Baskervville+SC&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"); */
 
 @tailwind base;
 @tailwind components;
@@ -36,13 +36,71 @@ body {
   /* font-weight: ; */
   font-style: normal;
 }
-h1,
-h2,
-h3 {
-  font-family: var(--font-montserrat), sans-serif;
+.datePicker {
+  width: 100%;
+}
+::-webkit-scrollbar-thumb {
+  background: #e755a7;
+  border-radius: 10px;
 }
 
-code,
+::-webkit-scrollbar-thumb:hover {
+  background: #e755a7;
+}
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+  background: #f4bdc9;
+}
+
+/* h1,
+h2,
+h3 {
+  font-family: var(--font-poppins), sans-serif;
+} */
+
+/* code,
 pre {
   font-family: var(--font-montserrat), monospace;
+} */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-small {
+    text-wrap: balance;
+  }
+}
+
+.PhoneInputInput-force-custom {
+  @apply relative rounded-md px-2;
+}
+
+.PhoneInputInput-force-custom > select {
+  @apply absolute;
+}
+
+.PhoneInputInput-force-custom > input {
+  @apply border-0 outline-none;
+}
+
+.PhoneInputInput-force-custom > input::placeholder {
+  @apply text-gray-500 text-small;
+}
+
+.PhoneInputInput-force-custom > input:focus {
+  --tw-ring-shadow: none !important;
+  outline: none !important;
+  --PhoneInput-color--focus: #f8408c !important;
+  --PhoneInputCountryFlag-borderColor--focus: #f8408c !important;
+  --PhoneInputCountrySelectArrow-color--focus: #f8408c !important;
+}
+.PhoneInputInternationalIconPhone,
+.PhoneInputCountrySelect:focus
+  + .PhoneInputCountryIcon
+  .PhoneInputInternationalIconGlobe,
+.PhoneInputCountrySelect:focus
+  + .PhoneInputCountryIcon
+  + .PhoneInputCountrySelectArrow {
+  color: #f8408c !important;
 }

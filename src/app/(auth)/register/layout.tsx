@@ -22,7 +22,8 @@ export const metadata: Metadata = {
   title: "Women's Business Club",
   description: "Login",
 };
-export default async function RootLayout({
+
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -32,29 +33,25 @@ export default async function RootLayout({
       <body
         className={`${poppins.variable} ${montserrat.variable} antialiased`}
       >
-        <div
-          className="basic-3/5 bg-[url('/auth/awards-hero.png')] bg-cover bg-repeat-none
- bg-lighter-dark-blue bg-blend-soft-light hidden md:block"
-        >
-          <div className="flex">
-            <div className="w-3/5 mt-auto ml-8 mb-20">
-              <span className="block text-brand-white font-medium text-2xl mb-2 ">
-                Are you ready to take your ambitions to the next level ?
-              </span>
-              <span className="block text-brand-white font-normal text-xl">
-                Complete this short form to unlock unlimited connections,
-                tailored resources and exciting opportunities awaiting you at
-                Women's BusinessClub.{" "}
-              </span>
-            </div>
-
-            <div className="h-screen bg-brand-white w-2/5 flex flex-col justify-center">
-              {children}
+        <div className="h-screen flex">
+          <div className="hidden md:flex h-full w-3/5 bg-[url('/auth/awards-hero.png')] bg-cover bg-no-repeat bg-lighter-dark-blue bg-blend-soft-light fixed top-0 left-0">
+            <div className="flex h-full">
+              <div className="mt-auto ml-8 mb-20">
+                <span className="block text-brand-white font-medium text-2xl mb-2">
+                  Are you ready to take your ambitions to the next level?
+                </span>
+                <span className="block text-brand-white font-normal text-xl">
+                  Complete this short form to unlock unlimited connections,
+                  tailored resources, and exciting opportunities awaiting you at
+                  Women's Business Club.
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="h-screen bg-brand-white  flex flex-col justify-center md:hidden">
-          {children}
+
+          <div className="ml-auto md:w-2/5 w-full h-screen bg-brand-white flex flex-col overflow-auto p-12">
+            {children}
+          </div>
         </div>
       </body>
     </html>

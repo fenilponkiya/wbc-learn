@@ -45,7 +45,7 @@ export default function Home() {
             </h1>
           </div>
           <div className="col-span-5 lg:col-span-5 mt-2 md:ml-3 text-2xl text-dark-blue md:col-span-6">
-            <p className="font-serif">
+            <p className="">
               Women&apos;s Business Club is a private member network dedicated
               to connecting, supporting and empowering female entrepreneurs and
               corporate executives. Our mission is to foster collaboration,

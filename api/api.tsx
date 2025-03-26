@@ -1,11 +1,11 @@
 import { Toast } from "../utils/altert";
 import api from "./backend";
 
-const getHeaders = () => {
+const getHeaders = (isFormData?: boolean) => {
   const userTimeZone = Intl.DateTimeFormat()?.resolvedOptions()?.timeZone;
   let headers = {
     headers: {
-      "Content-type": "application/json",
+      "Content-type": isFormData ? "multipart/form-data" : "application/json",
       timeZone: userTimeZone,
       authorization: "Bearer " + (localStorage?.getItem("token") || null),
     },
@@ -60,9 +60,13 @@ const apiErrorAlert = (status: Number, message: string) => {
       break;
   }
 };
-export const createApi = async (routeName: string, payload: any) => {
+export const createApi = async (
+  routeName: string,
+  payload: any,
+  isFormData = false
+) => {
   return api
-    .post(routeName, payload, getHeaders())
+    .post(routeName, payload, getHeaders(isFormData))
     .then((res) => {
       return res;
     })

@@ -75,7 +75,6 @@ const FormInputField: FC<FormInputFieldProps> = ({
           pattern: pattern,
         }}
         render={({ field: { onChange, value }, fieldState: { error } }) => {
-          console.log(value, name);
           return (
             <InputField
               onClick={onClick}

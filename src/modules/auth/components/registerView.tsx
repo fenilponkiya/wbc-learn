@@ -6,14 +6,12 @@ import DatePickerField from "@/modules/core/formComponents/InputForm/dateinputHo
 import FormInputField from "@/modules/core/formComponents/InputForm/inputHookField";
 import MobileNumberField from "@/modules/core/formComponents/InputForm/mobileNumberHookField";
 import FormSelectField from "@/modules/core/formComponents/InputForm/selectHookField";
-import { City, fetchCityList } from "@/redux/slices/cityNameSlice";
-import { Country, fetchCountryList } from "@/redux/slices/countryNameSlice";
-import { fetchStateList, State } from "@/redux/slices/stateNameSlice";
-import { AppDispatch, RootState } from "@/redux/store/store";
+import { City } from "@/redux/slices/cityNameSlice";
+import { Country } from "@/redux/slices/countryNameSlice";
+import { State } from "@/redux/slices/stateNameSlice";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import { ChangeEvent, FC, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { FC } from "react";
 import { RegisterViewProps } from "../model/DVM";
 import { errorMessage } from "../model/constants";
 
@@ -23,102 +21,27 @@ const RegisterView: FC<RegisterViewProps> = ({
   onSubmit,
   setValue,
   trigger,
+  imageFile,
+  imageRef,
+  handleImageClick,
+  getFileHandler,
+  showModal,
+  setShowModal,
+  locationValue,
+  setLocationValue,
+  dialogTitle,
+  selectedCountryValue,
+  setSelectedCountryValue,
+  selectedStateValue,
+  setSelectedStateValue,
+  selectedCityValue,
+  setSelectedCityValue,
+  countryData,
+  stateData,
+  cityData,
+  locationBlockHandler,
+  handleChange,
 }) => {
-  const dispatch = useDispatch<AppDispatch>();
-
-  const { country, state, city } = useSelector((state: RootState) => state);
-  const { countryList } = country;
-  const { stateList } = state;
-  const { cityList } = city;
-  const [showModal, setShowModal] = useState(false);
-  const [locationValue, setLocationValue] = useState("");
-  const [dialogTitle, setDialogTitle] = useState("");
-
-  const [selectedCountryValue, setSelectedCountryValue] =
-    useState<Country | null>(null);
-
-  const [selectedStateValue, setSelectedStateValue] = useState<State | null>(
-    null
-  );
-  const [selectedCityValue, setSelectedCityValue] = useState<State | null>(
-    null
-  );
-  const [countryData, setCountryData] = useState<Country[]>([]);
-  const [stateData, setStateData] = useState<State[]>([]);
-  const [cityData, setCityData] = useState<City[]>([]);
-
-  const handleChange = (
-    event: ChangeEvent<HTMLInputElement>,
-    type: "country" | "state" | "city"
-  ) => {
-    const value = event.target.value.toLowerCase();
-    setLocationValue(value);
-
-    const locationMap = {
-      country: countryList,
-      state: stateList,
-      city: cityList,
-    };
-
-    const filteredLocationData = locationMap[type]?.filter((item) =>
-      item.name.toLowerCase().includes(value)
-    );
-    if (type === "country") setCountryData(filteredLocationData as Country[]);
-    if (type === "state") setStateData(filteredLocationData as State[]);
-    if (type === "city") setCityData(filteredLocationData as City[]);
-  };
-
-  useEffect(() => {
-    dispatch(fetchCountryList());
-  }, [dispatch]);
-
-  useEffect(() => {
-    setSelectedStateValue(null);
-    setSelectedCityValue(null);
-    setValue("state", "");
-    setValue("city", "");
-    if (selectedCountryValue?.iso2) {
-      dispatch(fetchStateList(selectedCountryValue?.iso2));
-    }
-  }, [selectedCountryValue, dispatch, setValue]);
-
-  useEffect(() => {
-    setSelectedCityValue(null);
-    setValue("city", "");
-
-    if (selectedStateValue?.iso2 && selectedCountryValue?.iso2) {
-      dispatch(
-        fetchCityList({
-          countryIso2: selectedCountryValue.iso2,
-          stateIso2: selectedStateValue.iso2,
-        })
-      );
-    }
-  }, [selectedStateValue, selectedCountryValue, dispatch]);
-
-  useEffect(() => {
-    setCountryData(countryList);
-  }, [countryList]);
-  useEffect(() => {
-    setStateData(stateList);
-  }, [stateList]);
-  useEffect(() => {
-    setCityData(cityList);
-  }, [cityList]);
-
-  const locationBlockHandler = (title: "country" | "state" | "city") => {
-    setDialogTitle(title);
-    setShowModal(true);
-
-    if (title === "country") {
-      setCountryData(countryList ?? []);
-    } else if (title === "state") {
-      setStateData(stateList ?? []);
-    } else {
-      setCityData(cityList ?? []);
-    }
-  };
-
   return (
     <div>
       <Image
@@ -136,22 +59,47 @@ const RegisterView: FC<RegisterViewProps> = ({
           <span className="font-semibold text-lg">Create an account</span>
           <div className="grid grid-cols-2 gap-4 ">
             <div className="flex justify-center items-center h-full w-full">
-              <div className="border rounded-md border-brand-dark flex flex-col items-center justify-center h-full w-full">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-12 h-12 text-primary-light group-hover:text-gray-600"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
-                    clipRule="evenodd"
+              <div
+                className="border rounded-lg border-brand-dark flex items-center justify-center h-32 w-full cursor-pointer overflow-hidden"
+                onClick={handleImageClick}
+              >
+                <input
+                  type="file"
+                  hidden
+                  ref={imageRef}
+                  onChange={getFileHandler}
+                  accept="image/*"
+                />
+
+                {imageFile ? (
+                  <Image
+                    src={imageFile}
+                    alt="Profile Image"
+                    width={300}
+                    height={300}
+                    className="rounded-lg w-full h-full "
+                    objectFit="cover"
                   />
-                </svg>
-                <span className="mt-2 text-sm text-brand-dark">
-                  Upload Profile
-                </span>
+                ) : (
+                  // </div>
+                  <div className="flex flex-col items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-12 h-12 text-primary-light group-hover:text-gray-600"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    <span className="mt-2 text-sm text-brand-dark">
+                      Upload Profile
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
 

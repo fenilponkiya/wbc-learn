@@ -61,7 +61,7 @@ const DatePickerField: FC<DatePickerTypes> = ({
                 // timeCaption="time"
                 placeholderText={placeHolder}
                 dateFormat="dd-MM-yyyy"
-                minDate={new Date()}
+                maxDate={new Date()}
                 onFocus={(e) =>
                   ((e.target as HTMLInputElement).readOnly = true)
                 }
